@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#121212" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <title>Work — Arthur Barbosa</title>
+    <style>
+      :root { --ink:#121212; --paper:#f3efe7; --lime:#c9ff1a; --orange:#ff5a1f; --violet:#6d4cff; }
+      * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,Arial,sans-serif; } a { color:inherit; }
+      .shell { width:min(1440px,calc(100% - 48px)); margin:auto; }
+      header { height:68px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(18,18,18,.25); }
+      .brand, .back { font:700 17px/1 "Space Mono",monospace; text-decoration:none; } .brand b { color:var(--orange); } .back { font-size:11px; }
+      .hero { padding:58px 0 36px; border-bottom:2px solid var(--ink); display:grid; grid-template-columns:1.12fr .88fr; gap:35px; align-items:end; }
+      .eyebrow { margin:0 0 14px; font:700 11px/1.3 "Space Mono",monospace; letter-spacing:.08em; text-transform:uppercase; }
+      h1 { margin:0; font:400 clamp(4rem,10vw,9.5rem)/.78 "DM Serif Display",Georgia,serif; letter-spacing:-.075em; } h1 em { color:var(--orange); font-style:italic; }
+      .intro { max-width:430px; font-size:16px; line-height:1.52; } .meta { display:grid; gap:10px; align-self:end; font:700 11px/1.4 "Space Mono",monospace; }
+      .tabs { display:flex; gap:8px; flex-wrap:wrap; padding:25px 0 0; } .tab { border:1.5px solid var(--ink); border-radius:99px; padding:10px 14px; font:700 11px/1 "Space Mono",monospace; text-decoration:none; } .tab:hover,.tab.active { color:var(--paper); background:var(--ink); }
+      .featured { padding:42px 0 28px; display:grid; grid-template-columns:1.45fr .55fr; gap:24px; } .featured video { width:100%; aspect-ratio:16/9; display:block; border-radius:17px; background:#000; object-fit:cover; } .feature-copy { padding:16px 0; } .feature-copy h2 { margin:0 0 18px; font:400 clamp(2.4rem,4vw,4.4rem)/.85 "DM Serif Display",Georgia,serif; letter-spacing:-.06em; } .feature-copy p { font-size:15px; line-height:1.5; }
+      .section-head { padding:22px 0 14px; border-top:2px solid var(--ink); display:flex; justify-content:space-between; gap:20px; align-items:baseline; } .section-head h2 { margin:0; font:400 clamp(2rem,4vw,4rem)/.9 "DM Serif Display",Georgia,serif; letter-spacing:-.06em; }
+      .archive { padding-bottom:90px; display:grid; grid-template-columns:repeat(4,1fr); gap:14px; } .card { min-height:152px; position:relative; display:flex; align-items:end; border:1.5px solid var(--ink); border-radius:13px; overflow:hidden; background:var(--ink); color:var(--paper); text-decoration:none; } .card img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.65; transition:.3s ease; } .card:hover img { opacity:.9; transform:scale(1.05); } .card span { position:relative; z-index:1; width:100%; padding:10px; background:linear-gradient(transparent,rgba(18,18,18,.94)); font:700 10px/1.35 "Space Mono",monospace; } .card.reel { padding:14px; align-items:flex-start; background:var(--violet); } .card.reel b { font:700 15px/1 "Space Mono",monospace; } .card.reel span { align-self:end; padding:0; background:none; }
+      footer { padding:20px 0 26px; color:var(--paper); background:var(--ink); font:700 10px/1.4 "Space Mono",monospace; } .foot { display:flex; justify-content:space-between; }
+      @media(max-width:820px){.shell{width:min(100% - 32px,1440px)} header{height:60px}.hero,.featured{grid-template-columns:1fr;padding-top:38px}.archive{grid-template-columns:repeat(2,1fr)}.featured{padding-top:28px}.foot{flex-direction:column;gap:8px}}
+    </style>
+  </head>
+  <body>
+    <header class="shell"><a class="brand" href="index.html">AB<b>//</b></a><a class="back" href="index.html#work">← VOLTAR AO PORTFÓLIO</a></header>
+    <main class="shell">
+      <section class="hero"><div><p class="eyebrow" id="index">01 / WORK</p><h1 id="title">Gameplay</h1><nav class="tabs" aria-label="Categorias"><a href="work.html?category=gameplay">GAMEPLAY</a><a href="work.html?category=irl">IRL</a><a href="work.html?category=motion">MOTION</a><a href="work.html?category=react">REACT</a><a href="work.html?category=shorts">THE ROAD / SHORTS</a></nav></div><div class="meta" id="meta"></div></section>
+      <section class="featured" id="featured"></section>
+      <section><div class="section-head"><h2>Arquivo completo</h2><span class="eyebrow" id="counter"></span></div><div class="archive" id="archive"></div></section>
+    </main>
+    <footer><div class="shell foot"><span>© <span id="year"></span> ARTHUR BARBOSA</span><span>AB//</span></div></footer>
+    <script>
+      const yt = id => ({kind:'yt',id,url:`https://youtu.be/${id}`});
+      const reel = (id,account='furiagg') => ({kind:'reel',id,account,url:`https://www.instagram.com/${account}/reel/${id}/`});
+      const categories = {
+        gameplay:{name:'Gameplay',number:'01',description:'Edição com timing, humor e leitura de gameplay para manter a audiência dentro da partida.',feature:'assets/videos/gameplay.mp4',poster:'assets/posters/gameplay.jpg',items:[yt('wpyvK-lQ5rg'),yt('sZeJUiORdnM'),yt('kDCg8-9KtpY'),yt('H7Tiak_r5uo'),yt('r8_oh-Lo0hk'),yt('tNQs7fqUzts'),yt('mEZE1IA5GXM'),yt('tdQKWNQq44I'),yt('3xqECm10Hdw'),yt('oIUphmlRy9M'),yt('vwskAOlZi4Y'),yt('CgUhvtTUk-s'),yt('56DFd7LPBa8'),yt('k1Xbvx-LazU'),yt('AAQif3IU4xc'),yt('P6MZLZ76pY8'),yt('NHRB2ixys9E'),yt('LihPhHPOYog'),yt('rT9AQfYD6Ww'),yt('EXijVj77enU'),yt('hdSpauEY3JM'),yt('Nfz6yzCRaQ0'),yt('DzMEYEsvA14')]},
+        irl:{name:'IRL',number:'02',description:'Narrativa de vida real, recortes de reação e edição feita para trazer personalidade ao centro.',feature:'assets/videos/irl.mp4',poster:'assets/posters/irl.jpg',items:[yt('0dZm6hRp4RI'),yt('z2l7SVjd2Bg'),yt('pGTQcf-9DS8'),yt('8oa8XLL5Dys'),yt('CacMR71RF_c'),yt('sa6ZgJz_6F0'),yt('M7mbAiRAwjk'),yt('i-GeXukoVr8'),yt('FBdBQABnAFk'),yt('4ppT22LulkQ')]},
+        motion:{name:'Motion',number:'03',description:'Motion e conteúdo de marca com clareza, energia e acabamento para campanhas e redes.',feature:'assets/videos/motion.mp4',poster:'assets/posters/motion.jpg',items:[]},
+        react:{name:'React',number:'04',description:'Edição de reação que acompanha o ritmo da conversa, preserva espontaneidade e encontra o punchline.',feature:'assets/videos/react.mp4',poster:'assets/posters/react.jpg',items:[yt('kInF_1yJpRw'),yt('_f8FjIP0Jd4'),yt('lHfE0fQ2gAk'),yt('55bguA-t7ME'),yt('QRxUox2w0dQ')]},
+        shorts:{name:'The Road / Shorts',number:'05',description:'Short-form feito para impacto rápido, replay e relevância na timeline.',feature:null,poster:null,items:[yt('nDVTy2RryO0'),yt('qMPEkP2_UPw'),yt('7YQitfyBRls'),yt('8GvpgMWPvuA'),yt('cft68dmQcWs'),yt('L-F9-A-veMY'),yt('l8JWuHet-bo'),yt('CZ6DthtXAHo'),yt('1NvJwfvG9BU'),yt('Uvgcj0KaXIo'),yt('4VXPrihoW0Y'),yt('v6uFYzx5pb0'),yt('udKBI-X8d9g'),yt('7UPkLs6J4xc'),reel('Dbbl4pahg_l'),reel('DaEDqG0hBUh'),reel('DZVVGGxx-Gu'),reel('DXNNpvzAQ5Z'),reel('DKzck4LsK_u','furia.football'),reel('DQMs6LfgVpQ'),reel('DItuqujMVop'),reel('DFtDxo2vDN3'),reel('DRM1ZRfAbLo'),reel('DPPaEySgXM3'),reel('DWAN1XSmuMx','madhousetv_'),reel('DINEhBuSdSU','gabrielanerym'),reel('DIXW0SBSPP2','gabrielanerym'),reel('DJNacPry_XX','gabrielanerym'),reel('DHpM2YMRWAR','gabrielanerym'),reel('C6hL9HAufp-','furia.football'),reel('DKF6224J4Gx'),reel('DJVRGbdNeaF','gabrielanerym'),reel('DKiTcuSSmqb','gabrielanerym'),reel('DIZ_3AZy3uN','gabrielanerym'),reel('DCU6GoRPApK'),reel('DSDO-2PkYta','furia.r6'),reel('DQKwcCMgRtO'),reel('C4i5tcWgZbs'),reel('DSfb6LvkS4Z'),reel('DTlfttpkWw6'),reel('DAWH-19JeXh'),reel('DGlzjbdJHAZ'),reel('DNB38jJOvlo','furia.lol')]}
+      };
+      const selected = categories[new URLSearchParams(location.search).get('category')] || categories.gameplay;
+      document.title = `${selected.name} — Arthur Barbosa`; document.querySelector('#title').textContent = selected.name; document.querySelector('#index').textContent = `${selected.number} / WORK`; document.querySelector('#meta').innerHTML = `<span>${selected.description}</span><span>${selected.items.length ? `${selected.items.length} LINKS NO ARQUIVO` : 'REEL SELECIONADO'}</span>`; document.querySelector('#counter').textContent = `${selected.items.length || 1} PROJETOS`;
+      document.querySelectorAll('.tabs a').forEach(a=>{ if(a.href === location.href) a.classList.add('active'); });
+      const featured = document.querySelector('#featured'); featured.innerHTML = selected.feature ? `<video controls playsinline poster="${selected.poster}"><source src="${selected.feature}" type="video/mp4"></video><div class="feature-copy"><p class="eyebrow">Selected reel</p><h2>${selected.name}</h2><p>${selected.description}</p></div>` : `<div class="feature-copy"><p class="eyebrow">Selected format</p><h2>${selected.name}</h2><p>${selected.description}</p></div><div class="feature-copy"><p class="eyebrow">Format</p><h2>9:16</h2><p>Uma coleção de formatos curtos para redes e comunidades.</p></div>`;
+      const archive = document.querySelector('#archive'); archive.innerHTML = selected.items.length ? selected.items.map((item,i)=>item.kind==='yt' ? `<a class="card" target="_blank" rel="noopener" href="${item.url}"><img loading="lazy" src="https://i.ytimg.com/vi/${item.id}/hqdefault.jpg" alt="Thumbnail do vídeo ${i+1}"><span>YOUTUBE / ${String(i+1).padStart(2,'0')} ↗</span></a>` : `<a class="card reel" target="_blank" rel="noopener" href="${item.url}"><b>@${item.account}</b><span>REEL / ${String(i+1).padStart(2,'0')} ↗</span></a>`).join('') : `<article class="card reel"><b>REEL PRINCIPAL</b><span>ASSISTA ACIMA ↗</span></article>`;
+      document.querySelector('#year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
